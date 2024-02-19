@@ -3,7 +3,7 @@
 ## THIS FORK
 
 - Adds 'evaluate between epochs' enhancement from wand - see [article](https://wandb.ai/byyoung3/ml-news/reports/How-to-Fine-Tune-LLaVA-on-a-Custom-Dataset--Vmlldzo2NjUwNTc1)
-- Add QLORA training script - train_qlora__wandb.sh
+- Adds fine-tuning scripts - see the [Fine tuning README](./README.finetuning.md) (QLORA training)
 - Adds a REPL script to speed up prompt engineering work:
 
 ```
