@@ -67,11 +67,13 @@ def process_and_save(dataset, output_folder, subset_name):
 
     # Save the JSON data list to a file
     json_output_path = os.path.join(output_folder, subset_name, 'dataset.json')
+    print(f"Saving {len(dataset)} items to {json_output_path}")
     with open(json_output_path, 'w') as json_file:
         json.dump(json_data_list, json_file, indent=4)
 
 
 def save_dataset(dataset_name, output_folder, class_name, subset_name, max_samples, val_samples=None):
+    print(f"Processing dataset {dataset_name} to {output_folder} - for class {class_name}, subset {subset_name}")
     # Load the dataset from Hugging Face
     dataset = load_dataset(dataset_name, split=subset_name)
 
