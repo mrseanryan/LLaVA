@@ -2,27 +2,27 @@
 
 set -e -x  # stop on 1st error, debug output of args used
 
-# TODO:
-# - adjust paths like '/root/' to match your system!
-# - get/create the data
-# - download the base model:
-#     git lfs install
-#     git clone https://huggingface.co/liuhaotian/llava-v1.6-7b
-# - review args below, and the comments section
+# BEFORE USE:
+# 1 - get/create the data:
+#   ./python prep_data__OK-VQA__sr.py
+# 2 - download the base model:
+#   ./download_llava_weights__sr.sh
+#
+# 3 - review args below, and the comments section
 
 # Set the prompt and model versions directly in the command
-deepspeed /root/LLaVA/llava/train/train_mem.py \
-    --deepspeed /root/LLaVA/scripts/zero2.json \ 
+deepspeed ./llava/train/train_mem.py \
+    --deepspeed ./scripts/zero2.json \
     --lora_enable True \
     --lora_r 128 \
     --lora_alpha 256 \
     --mm_projector_lr 2e-5 \
     --bits 4 \
-    --model_name_or_path /root/LLaVA/llava/llava-v1.6-7b \
+    --model_name_or_path ./temp/llava-v1.6-7b \
     --version llava_llama_2 \
-    --data_path /root/dataset/train/dataset.json \
-    --validation_data_path /root/dataset/validation/dataset.json \
-    --image_folder /root/dataset/images/ \
+    --data_path ./temp/dataset/train/dataset.json \
+    --validation_data_path ./temp/dataset/validation/dataset.json \
+    --image_folder ./temp/dataset/images/ \
     --vision_tower openai/clip-vit-large-patch14-336 \
     --mm_projector_type mlp2x_gelu \
     --mm_vision_select_layer -2 \
@@ -31,7 +31,7 @@ deepspeed /root/LLaVA/llava/train/train_mem.py \
     --image_aspect_ratio pad \
     --group_by_modality_length True \
     --bf16 True \
-    --output_dir /root/LLaVA/llava/checkpoints/llama-2-7b-chat-task-qlora \
+    --output_dir ./temp/checkpoints/llama-2-7b-chat-task-qlora \
     --num_train_epochs 10 \
     --per_device_train_batch_size 32 \
     --per_device_eval_batch_size 32 \
@@ -56,7 +56,7 @@ deepspeed /root/LLaVA/llava/train/train_mem.py \
 # zero2.json -- if not enough GPU memory, try zero3.json which offloads to CPU (slower)
 # bits 4 -- qlora
 #
-# model_name_or_path - original had /root/LLaVA/llava/llava-v1.5-7b
+# model_name_or_path - original had ./llava/llava-v1.5-7b
 #
 # num_train_epochs - was 500, but blog says 10 is enough (depends on data...)
 # mm_projector_lr: The separate learning rate for the multimodal projector as specified by the LLaVA authors 
@@ -74,9 +74,4 @@ deepspeed /root/LLaVA/llava/train/train_mem.py \
 #
 # see also https://wandb.ai/byyoung3/ml-news/reports/How-to-Fine-Tune-LLaVA-on-a-Custom-Dataset--Vmlldzo2NjUwNTc1
 
-# To infer with the QLORA layer:
-#
-# python run_llava.py --model-path /root/LLaVA/llava/checkpoints/llava-2-7b-chat-task-qlora/best_llava_eval_model_llava_lora 
-# --model-base /root/LLaVA/llava/llava-v1.6-7b 
-# --image-file /root/dataset/images/0f47c0b5-2c77-45e6-87b0-89af46e99500.jpg 
-# --query “why was this photo taken?”
+# To infer with the QLORA layer - see infer_qlora__wandb.sh

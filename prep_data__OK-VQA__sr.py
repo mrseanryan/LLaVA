@@ -94,7 +94,7 @@ def save_dataset(dataset_name, output_folder, class_name, subset_name, max_sampl
             process_and_save(data, output_folder, subset)
 
 # Usage example
-output_folder = 'dataset'
+output_folder = './temp/dataset'
 class_name = 'other'
 max_samples = 100
 val_samples = 30 # 300
