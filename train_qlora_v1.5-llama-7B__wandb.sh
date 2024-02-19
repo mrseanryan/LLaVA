@@ -76,7 +76,8 @@ deepspeed ./llava/train/train_mem.py \
 # Depending on your hardware setup, you can change the batch size to avoid memory errors. I trained on 8 NVIDIA RTX 3090’s, which had no issues with a batch size of 32.
 # - on AWS a g5.12xlarge has 4 x GPU so a batch size of 16 seems reasonable
 #
-# LLaVA is trained on 8 A100 GPUs with 80GB memory. To train on fewer GPUs, you can reduce the per_device_train_batch_size and increase the gradient_accumulation_steps accordingly. Always keep the global batch size the same: per_device_train_batch_size x gradient_accumulation_steps x num_gpus
+# LLaVA is trained on 8 A100 GPUs with 80GB memory. To train on fewer GPUs, you can reduce the per_device_train_batch_size and increase the gradient_accumulation_steps accordingly.
+# - Always keep the global batch size the same: per_device_train_batch_size x gradient_accumulation_steps x num_gpus
 #
 # - the training script has an option for monitoring using Weights & Biases using the --report_to wandb flag, providing real-time tracking of the model's progress and performance metrics.
 #

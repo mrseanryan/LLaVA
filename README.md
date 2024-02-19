@@ -2,9 +2,11 @@
 
 ## THIS FORK
 
+TODO - fix fine-tuning for v1.6.  For v1.5 fine-tuning, see my other fork: https://github.com/mrseanryan/finetune_LLaVA
+
 - Adds 'evaluate between epochs' enhancement from wand - see [article](https://wandb.ai/byyoung3/ml-news/reports/How-to-Fine-Tune-LLaVA-on-a-Custom-Dataset--Vmlldzo2NjUwNTc1)
-- Adds fine-tuning scripts - see the [Fine tuning README](./README.finetuning.md) (QLORA training)
 - Adds a REPL script to speed up prompt engineering work:
+- [WIP] Adds fine-tuning scripts - see the [Fine tuning README](./README.finetuning.md) (QLORA training)
 
 ```
 python run_llava_repl__sr.py --model-path "<Hugging face model name>" --image-file  <path to image file>

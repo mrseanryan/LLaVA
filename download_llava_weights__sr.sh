@@ -6,7 +6,15 @@ set -e -x
 pushd temp
 
 git clone https://huggingface.co/liuhaotian/llava-v1.5-7b
+pushd llava-v1.5-7b
+git lfs install
+git lfs pull
+popd
 
 git clone https://huggingface.co/liuhaotian/llava-v1.6-mistral-7b
+pushd llava-v1.6-mistral-7b
+git lfs install
+git lfs pull
+popd
 
 popd

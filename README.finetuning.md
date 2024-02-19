@@ -14,12 +14,8 @@ python prep_data__OK-VQA__sr.py
 
 3. install git lfs:
 
-- see https://github.com/git-lfs/git-lfs/blob/main/INSTALLING.md
-
 ```
-curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-sudo apt-get install git-lfs
-git lfs install
+./install-lfs__sr.sh
 ```
 
 4. download the base model:
