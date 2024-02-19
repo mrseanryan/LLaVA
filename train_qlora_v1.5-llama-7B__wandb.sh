@@ -10,6 +10,8 @@ set -e -x  # stop on 1st error, debug output of args used
 #
 # 3 - review args below, and the comments section
 
+WANDB_MODE=offline
+
 # Set the prompt and model versions directly in the command
 deepspeed ./llava/train/train_mem.py \
     --deepspeed ./scripts/zero2.json \
@@ -55,6 +57,9 @@ deepspeed ./llava/train/train_mem.py \
 #
 # zero2.json -- if not enough GPU memory, try zero3.json which offloads to CPU (slower)
 # bits 4 -- qlora
+#
+# --model_name_or_path - original had ./llava/llava-v1.5-7b
+# --version - original had llava_llama_2
 #
 # num_train_epochs - was 500, but blog says 10 is enough (depends on data...)
 # mm_projector_lr: The separate learning rate for the multimodal projector as specified by the LLaVA authors 

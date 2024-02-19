@@ -5,6 +5,8 @@ set -e -x  # stop on 1st error, debug output of args used
 # --pretrain_mm_mlp_adapter - added this, since the output misses this file, and this option is used in the other example tuning scripts.
 #   but what is the correct value?
 
+WANDB_MODE=offline
+
 deepspeed ./llava/train/train_mem.py \
     --deepspeed ./scripts/zero2.json \
     --lora_enable True \
