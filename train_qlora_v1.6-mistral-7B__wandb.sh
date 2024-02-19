@@ -51,6 +51,8 @@ deepspeed ./llava/train/train_mem.py \
     --dataloader_num_workers 4 \
     --lazy_preprocess True
 
+# PROBLEM: mistral base model does not have a 'mm_projector.bin' file and none is output from this script
+
 # Notes on args:
 #
 # zero2.json -- if not enough GPU memory, try zero3.json which offloads to CPU (slower)

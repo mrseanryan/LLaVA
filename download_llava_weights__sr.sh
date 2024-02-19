@@ -5,6 +5,8 @@ set -e -x
 
 pushd temp
 
-git clone https://huggingface.co/liuhaotian/llava-v1.6-mistral-7b # was https://huggingface.co/liuhaotian/llava-v1.5-7b
+git clone https://huggingface.co/liuhaotian/llava-v1.5-7b
+
+git clone https://huggingface.co/liuhaotian/llava-v1.6-mistral-7b
 
 popd
